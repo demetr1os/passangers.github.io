@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АвтоТранс - Система учёта</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="system-header">
+        <div class="container">
+            <div class="header-top">
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> На главную
+                </a>
+                <div class="logo-section">
+                    <div class="logo">
+                        <i class="fas fa-chart-bar"></i>
+                        <div class="logo-text">
+                            <h1>Система учёта пассажирооборота</h1>
+                            <span class="subtitle">АвтоТранс</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <div class="user-greeting">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Диспетчер Иванов А.И.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Навигация -->
+            <nav class="system-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                    <li class="active"><a href="system.html"><i class="fas fa-clipboard-list"></i> Учёт пассажиров</a></li>
+                    <li><a href="feedback.html"><i class="fas fa-comments"></i> Обратная связь</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Информационная часть -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-card">
+                <h2><i class="fas fa-info-circle"></i> Информация о системе</h2>
+                <p>Данная система предназначена для автоматизированного учёта пассажирооборота на действующих рейсах местного формирования.</p>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h3><i class="fas fa-file-alt"></i> Путевые листы</h3>
+                        <p>Каждый рейс оформляется путевым листом с указанием количества пассажиров и выручки.</p>
+                    </div>
+                    <div class="info-item">
+                        <h3><i class="fas fa-chart-pie"></i> Аналитика</h3>
+                        <p>Система автоматически формирует отчёты по пассажиропотокам и загруженности направлений.</p>
+                    </div>
+                    <div class="info-item">
+                        <h3><i class="fas fa-calculator"></i> Финансы</h3>
+                        <p>Контроль денежного оборота по каждому рейсу и направлению.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Основной рабочий интерфейс -->
+    <main class="system-main">
+        <div class="container">
+            <!-- Быстрый доступ -->
+            <div class="quick-access">
+                <h2><i class="fas fa-bolt"></i> Быстрый доступ</h2>
+                <div class="access-grid">
+                    <a href="#dashboard" class="access-card">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Дашборд</span>
+                    </a>
+                    <a href="#waybills" class="access-card">
+                        <i class="fas fa-clipboard-check"></i>
+                        <span>Путевые листы</span>
+                    </a>
+                    <a href="reports.html" class="access-card">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Отчёты</span>
+                    </a>
+                    <a href="trips.html" class="access-card">
+                        <i class="fas fa-bus"></i>
+                        <span>Рейсы</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Дашборд -->
+            <section id="dashboard" class="dashboard-section">
+                <h2><i class="fas fa-tachometer-alt"></i> Дашборд</h2>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Сегодня</h3>
+                        <div class="dashboard-stats">
+                            <div class="stat">
+                                <span class="stat-label">Рейсов:</span>
+                                <span class="stat-value">24</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Пассажиров:</span>
+                                <span class="stat-value">856</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Выручка:</span>
+                                <span class="stat-value">642,800 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3>Текущий месяц</h3>
+                        <div class="dashboard-stats">
+                            <div class="stat">
+                                <span class="stat-label">Рейсов:</span>
+                                <span class="stat-value">532</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Пассажиров:</span>
+                                <span class="stat-value">18,245</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Выручка:</span>
+                                <span class="stat-value">13,683,750 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3>Топ направлений</h3>
+                        <ol class="top-list">
+                            <li>Москва - 4,200 пасс.</li>
+                            <li>Санкт-Петербург - 3,800 пасс.</li>
+                            <li>Казань - 2,100 пасс.</li>
+                            <li>Нижний Новгород - 1,950 пасс.</li>
+                            <li>Ростов-на-Дону - 1,800 пасс.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Форма путевого листа -->
+            <section id="waybills" class="form-section">
+                <h2><i class="fas fa-clipboard-check"></i> Создать путевой лист</h2>
+                <div class="form-card">
+                    <form id="waybillForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="tripNumber"><i class="fas fa-bus"></i> Номер рейса *</label>
+                                <select id="tripNumber" required>
+                                    <option value="">Выберите рейс</option>
+                                    <option value="101">101 - Москва (08:00)</option>
+                                    <option value="102">102 - Санкт-Петербург (09:30)</option>
+                                    <option value="103">103 - Казань (10:15)</option>
+                                    <option value="104">104 - Нижний Новгород (12:00)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="tripDate"><i class="fas fa-calendar"></i> Дата *</label>
+                                <input type="date" id="tripDate" required value="">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="passengers"><i class="fas fa-users"></i> Количество пассажиров *</label>
+                                <input type="number" id="passengers" min="0" max="100" required placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="fare"><i class="fas fa-tag"></i> Тариф (руб.) *</label>
+                                <input type="number" id="fare" min="1" required placeholder="500">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes"><i class="fas fa-sticky-note"></i> Примечания</label>
+                            <textarea id="notes" rows="3" placeholder="Дополнительная информация..."></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="reset" class="btn-secondary">
+                                <i class="fas fa-times"></i> Очистить
+                            </button>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save"></i> Сохранить путевой лист
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Таблица последних путевых листов -->
+            <section class="table-section">
+                <h2><i class="fas fa-history"></i> Последние путевые листы</h2>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Дата</th>
+                                <th>Рейс</th>
+                                <th>Направление</th>
+                                <th>Пассажиры</th>
+                                <th>Выручка</th>
+                                <th>Статус</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>15.07.2024</td>
+                                <td>101</td>
+                                <td>Москва</td>
+                                <td>38</td>
+                                <td>30,400 ₽</td>
+                                <td><span class="status completed">Завершён</span></td>
+                            </tr>
+                            <tr>
+                                <td>15.07.2024</td>
+                                <td>102</td>
+                                <td>Санкт-Петербург</td>
+                                <td>45</td>
+                                <td>54,000 ₽</td>
+                                <td><span class="status completed">Завершён</span></td>
+                            </tr>
+                            <tr>
+                                <td>15.07.2024</td>
+                                <td>103</td>
+                                <td>Казань</td>
+                                <td>32</td>
+                                <td>28,800 ₽</td>
+                                <td><span class="status active">В пути</span></td>
+                            </tr>
+                            <tr>
+                                <td>14.07.2024</td>
+                                <td>104</td>
+                                <td>Нижний Новгород</td>
+                                <td>28</td>
+                                <td>19,600 ₽</td>
+                                <td><span class="status completed">Завершён</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="system-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-chart-bar"></i> Система учёта</h3>
+                    <p>Автоматизированная система учёта пассажирооборота компании "АвтоТранс".</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-share-alt"></i> Связь с нами</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link vk"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link ok"><i class="fab fa-odnoklassniki"></i></a>
+                        <a href="#" class="social-link tg"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link viber"><i class="fab fa-viber"></i></a>
+                    </div>
+                    <p class="contact-info">
+                        <i class="fas fa-phone"></i> 8 (800) 123-45-67<br>
+                        <i class="fas fa-envelope"></i> support@avtotrans.ru
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 АвтоТранс. Система учёта пассажирооборота.</p>
+                <p><a href="index.html" class="footer-link">Перейти на главную страницу</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Устанавливаем сегодняшнюю дату в форме
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('tripDate');
+            if (dateInput) {
+                dateInput.value = today;
+                dateInput.max = today;
+            }
+            
+            // Авторасчет выручки
+            const passengersInput = document.getElementById('passengers');
+            const fareInput = document.getElementById('fare');
+            
+            if (passengersInput && fareInput) {
+                const calculateRevenue = () => {
+                    // В реальной системе здесь был бы расчет
+                };
+                
+                passengersInput.addEventListener('input', calculateRevenue);
+                fareInput.addEventListener('input', calculateRevenue);
+            }
+            
+            // Обработка формы
+            const form = document.getElementById('waybillForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Путевой лист успешно сохранён! В реальной системе данные бы отправились на сервер.');
+                    this.reset();
+                    const dateInput = document.getElementById('tripDate');
+                    if (dateInput) dateInput.value = today;
+                });
+            }
+        });
+    </script>
+</body>
+</html>

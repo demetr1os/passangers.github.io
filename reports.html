@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пассажиры - Отчёты</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js для графиков -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-bus"></i>
+                <h1>Пассажиры</h1>
+                <span class="subtitle">Учёт пассажирооборота</span>
+            </div>
+            <div class="header-info">
+                <div class="date-info">
+                    <i class="far fa-calendar"></i>
+                    <span id="current-date"></span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Выйти
+                </button>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <nav class="sidebar">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Дашборд</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="trips.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Рейсы и путевые листы</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Отчёты</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="sidebar-footer">
+                    <div class="stats">
+                        <small>Отчётный период:</small>
+                        <strong id="report-period">Июль 2024</strong>
+                    </div>
+                </div>
+            </nav>
+
+            <main class="content">
+                <div class="page-header">
+                    <h2><i class="fas fa-chart-bar"></i> Аналитические отчёты</h2>
+                    <div class="period-selector">
+                        <div class="filter-group">
+                            <label for="report-period-select">Период:</label>
+                            <select id="report-period-select">
+                                <option value="today">Сегодня</option>
+                                <option value="week">Неделя</option>
+                                <option value="month" selected>Месяц</option>
+                                <option value="quarter">Квартал</option>
+                                <option value="year">Год</option>
+                                <option value="custom">Произвольный</option>
+                            </select>
+                        </div>
+                        <div class="filter-group" id="custom-date-range" style="display: none;">
+                            <label for="start-date">с</label>
+                            <input type="date" id="start-date">
+                            <label for="end-date">по</label>
+                            <input type="date" id="end-date">
+                        </div>
+                        <button class="btn-primary" id="generateReportBtn">
+                            <i class="fas fa-sync-alt"></i> Сформировать
+                        </button>
+                        <button class="btn-secondary" id="exportReportBtn">
+                            <i class="fas fa-file-export"></i> Экспорт
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Навигация по отчётам -->
+                <div class="reports-nav">
+                    <a href="#passenger-flow" class="report-nav-link active">Пассажиропотоки</a>
+                    <a href="#directions" class="report-nav-link">Загруженность направлений</a>
+                    <a href="#trips-load" class="report-nav-link">Загруженность рейсов</a>
+                    <a href="#money" class="report-nav-link">Денежный оборот</a>
+                </div>
+
+                <!-- 1. Пассажиропотоки -->
+                <div class="report-section" id="passenger-flow">
+                    <div class="section-header">
+                        <h3><i class="fas fa-users"></i> Пассажиропотоки</h3>
+                        <div class="section-actions">
+                            <button class="btn-icon" title="Обновить график">
+                                <i class="fas fa-redo"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="report-content">
+                        <div class="chart-container">
+                            <canvas id="passengerFlowChart"></canvas>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Направление</th>
+                                        <th>Кол-во пассажиров</th>
+                                        <th>Доля от общего потока</th>
+                                        <th>Выручка, руб.</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="passenger-flow-table">
+                                    <!-- Данные загрузятся через JS -->
+                                </tbody>
+                                <tfoot>
+                                    <tr class="table-total">
+                                        <td><strong>Итого</strong></td>
+                                        <td><strong id="total-flow-passengers">0</strong></td>
+                                        <td><strong>100%</strong></td>
+                                        <td><strong id="total-flow-revenue">0 руб.</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Загруженность направлений -->
+                <div class="report-section" id="directions" style="display: none;">
+                    <div class="section-header">
+                        <h3><i class="fas fa-map-marked-alt"></i> Загруженность направлений</h3>
+                        <div class="filter-group">
+                            <label for="direction-select">Направление:</label>
+                            <select id="direction-select">
+                                <option value="all">Все направления</option>
+                                <!-- Опции загрузятся через JS -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="report-content">
+                        <div class="chart-container">
+                            <canvas id="directionsLoadChart"></canvas>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Направление</th>
+                                        <th>Кол-во рейсов</th>
+                                        <th>Среднее кол-во пассажиров</th>
+                                        <th>Общее кол-во мест</th>
+                                        <th>Процент загрузки</th>
+                                        <th>Средняя выручка</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="directions-load-table">
+                                    <!-- Данные загрузятся через JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Загруженность рейсов -->
+                <div class="report-section" id="trips-load" style="display: none;">
+                    <div class="section-header">
+                        <h3><i class="fas fa-bus"></i> Загруженность рейсов</h3>
+                        <div class="filter-group">
+                            <label for="trip-filter">Фильтр:</label>
+                            <input type="text" id="trip-filter" placeholder="Номер рейса или направление">
+                            <button class="btn-small" id="applyTripFilter">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="report-content">
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Рейс</th>
+                                        <th>Направление</th>
+                                        <th>Дата</th>
+                                        <th>Время</th>
+                                        <th>Пассажиры</th>
+                                        <th>Всего мест</th>
+                                        <th>% загрузки</th>
+                                        <th>Водитель</th>
+                                        <th>Статус</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="trips-load-table">
+                                    <!-- Данные загрузятся через JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="load-distribution">
+                            <h4>Распределение загрузки</h4>
+                            <div class="distribution-bars">
+                                <div class="distribution-item">
+                                    <span class="dist-label">0-30% (пустые)</span>
+                                    <div class="dist-bar">
+                                        <div class="dist-fill" style="width: 15%; background-color: #e74a3b;"></div>
+                                    </div>
+                                    <span class="dist-value">15%</span>
+                                </div>
+                                <div class="distribution-item">
+                                    <span class="dist-label">31-70% (средние)</span>
+                                    <div class="dist-bar">
+                                        <div class="dist-fill" style="width: 45%; background-color: #f6c23e;"></div>
+                                    </div>
+                                    <span class="dist-value">45%</span>
+                                </div>
+                                <div class="distribution-item">
+                                    <span class="dist-label">71-100% (полные)</span>
+                                    <div class="dist-bar">
+                                        <div class="dist-fill" style="width: 40%; background-color: #1cc88a;"></div>
+                                    </div>
+                                    <span class="dist-value">40%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Денежный оборот -->
+                <div class="report-section" id="money" style="display: none;">
+                    <div class="section-header">
+                        <h3><i class="fas fa-money-bill-wave"></i> Денежный оборот рейсов</h3>
+                        <div class="filter-group">
+                            <label for="money-sort">Сортировать по:</label>
+                            <select id="money-sort">
+                                <option value="revenue">Выручке (убыв.)</option>
+                                <option value="profit">Прибыли (убыв.)</option>
+                                <option value="trip">Номеру рейса</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="report-content">
+                        <div class="chart-container">
+                            <canvas id="moneyChart"></canvas>
+                        </div>
+                        <div class="financial-summary">
+                            <div class="summary-card">
+                                <h4>Общая выручка</h4>
+                                <p class="summary-value" id="total-revenue-summary">0 руб.</p>
+                                <small>За выбранный период</small>
+                            </div>
+                            <div class="summary-card">
+                                <h4>Средний чек</h4>
+                                <p class="summary-value" id="avg-check">0 руб.</p>
+                                <small>На одного пассажира</small>
+                            </div>
+                            <div class="summary-card">
+                                <h4>Прибыль</h4>
+                                <p class="summary-value" id="total-profit">0 руб.</p>
+                                <small>Выручка - затраты</small>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Рейс</th>
+                                        <th>Направление</th>
+                                        <th>Дата</th>
+                                        <th>Выручка</th>
+                                        <th>Затраты</th>
+                                        <th>Прибыль</th>
+                                        <th>Средний чек</th>
+                                        <th>Рентабельность</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="money-table">
+                                    <!-- Данные загрузятся через JS -->
+                                </tbody>
+                                <tfoot>
+                                    <tr class="table-total">
+                                        <td colspan="3"><strong>Итого</strong></td>
+                                        <td><strong id="total-money-revenue">0 руб.</strong></td>
+                                        <td><strong id="total-money-costs">0 руб.</strong></td>
+                                        <td><strong id="total-money-profit">0 руб.</strong></td>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АвтоТранс - Обратная связь</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="feedback-header">
+        <div class="container">
+            <div class="header-top">
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> На главную
+                </a>
+                <div class="logo-section">
+                    <div class="logo">
+                        <i class="fas fa-comments"></i>
+                        <div class="logo-text">
+                            <h1>Обратная связь</h1>
+                            <span class="subtitle">АвтоТранс</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Навигация -->
+            <nav class="feedback-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="system.html"><i class="fas fa-clipboard-list"></i> Учёт пассажиров</a></li>
+                    <li class="active"><a href="feedback.html"><i class="fas fa-comments"></i> Обратная связь</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="feedback-main">
+        <div class="container">
+            <!-- Информация о системе обратной связи -->
+            <section class="feedback-info">
+                <div class="info-card">
+                    <h2><i class="fas fa-info-circle"></i> Правила обратной связи</h2>
+                    <p>Мы ценим ваше мнение и готовы к конструктивному диалогу. Для обеспечения прозрачности и ответственности все сообщения публикуются с указанием автора.</p>
+                    
+                    <div class="rules-list">
+                        <div class="rule-item">
+                            <div class="rule-icon">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <div class="rule-content">
+                                <h3>Верификация пользователей</h3>
+                                <p>Все комментарии публикуются с указанием имени автора. Для подтверждения личности требуется регистрация с подтверждением email или телефона.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <div class="rule-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="rule-content">
+                                <h3>Безопасность данных</h3>
+                                <p>Мы гарантируем конфиденциальность ваших персональных данных и не передаём их третьим лицам.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <div class="rule-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="rule-content">
+                                <h3>Время ответа</h3>
+                                <p>Мы стараемся отвечать на все обращения в течение 24 часов в рабочие дни.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Форма обратной связи -->
+            <section class="feedback-form-section">
+                <h2><i class="fas fa-edit"></i> Написать сообщение</h2>
+                
+                <div class="form-card">
+                    <form id="feedbackForm">
+                        <!-- Блок авторизации/регистрации -->
+                        <div class="auth-section">
+                            <h3><i class="fas fa-user"></i> Данные отправителя</h3>
+                            
+                            <!-- Упрощенная версия - сразу показываем форму регистрации -->
+                            <div class="auth-form" id="register-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="reg-name"><i class="fas fa-user"></i> ФИО *</label>
+                                        <input type="text" id="reg-name" required placeholder="Иванов Иван Иванович">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="reg-email"><i class="fas fa-envelope"></i> Email *</label>
+                                        <input type="email" id="reg-email" required placeholder="ваш@email.com">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="reg-phone"><i class="fas fa-phone"></i> Телефон *</label>
+                                        <input type="tel" id="reg-phone" required placeholder="+7 (900) 123-45-67">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="reg-password"><i class="fas fa-lock"></i> Пароль *</label>
+                                        <input type="password" id="reg-password" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="agree-terms" required checked>
+                                        <label for="agree-terms">Я согласен с условиями обработки персональных данных</label>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-secondary" id="register-btn">
+                                    <i class="fas fa-user-plus"></i> Зарегистрироваться
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Форма сообщения -->
+                        <div class="message-section">
+                            <h3><i class="fas fa-comment-dots"></i> Ваше сообщение</h3>
+                            
+                            <div class="form-group">
+                                <label for="message-type"><i class="fas fa-tag"></i> Тип обращения *</label>
+                                <select id="message-type" required>
+                                    <option value="">Выберите тип</option>
+                                    <option value="complaint">Жалоба</option>
+                                    <option value="suggestion" selected>Предложение</option>
+                                    <option value="question">Вопрос</option>
+                                    <option value="thanks">Благодарность</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message-trip"><i class="fas fa-bus"></i> Рейс (если относится)</label>
+                                <select id="message-trip">
+                                    <option value="">Не относится к конкретному рейсу</option>
+                                    <option value="101">101 - Москва</option>
+                                    <option value="102">102 - Санкт-Петербург</option>
+                                    <option value="103">103 - Казань</option>
+                                    <option value="104">104 - Нижний Новгород</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message-title"><i class="fas fa-heading"></i> Заголовок *</label>
+                                <input type="text" id="message-title" required placeholder="Кратко опишите суть обращения">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message-text"><i class="fas fa-align-left"></i> Текст сообщения *</label>
+                                <textarea id="message-text" rows="6" required placeholder="Подробно опишите ваше обращение..."></textarea>
+                                <div class="char-counter">
+                                    <span id="char-count">0</span> / 2000 символов
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="publish-public" checked>
+                                    <label for="publish-public">Опубликовать сообщение публично (с вашим именем)</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="reset" class="btn-secondary">
+                                <i class="fas fa-times"></i> Очистить
+                            </button>
+                            <button type="submit" class="btn-primary" id="submit-feedback">
+                                <i class="fas fa-paper-plane"></i> Отправить сообщение
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Примеры опубликованных сообщений -->
+            <section class="published-feedback">
+                <h2><i class="fas fa-comments"></i> Опубликованные обращения</h2>
+                <p class="section-subtitle">Примеры обращений от наших клиентов (в реальной системе здесь были бы реальные отзывы)</p>
+                
+                <div class="feedback-list">
+                    <div class="feedback-item">
+                        <div class="feedback-header">
+                            <div class="feedback-author">
+                                <i class="fas fa-user-circle"></i>
+                                <div>
+                                    <strong>Сергей Петров</strong>
+                                    <small>s.petrov@email.com • 12.07.2025</small>
+                                </div>
+                            </div>
+                            <span class="feedback-type suggestion">Предложение</span>
+                        </div>
+                        <div class="feedback-content">
+                            <h3>Установка USB-розеток в автобусах</h3>
+                            <p>Предлагаю рассмотреть возможность установки USB-розеток для зарядки устройств в автобусах дальнего следования. Это значительно повысит комфорт поездки для пассажиров, особенно в длительных рейсах.</p>
+                        </div>
+                        <div class="feedback-footer">
+                            <div class="feedback-response">
+                                <strong><i class="fas fa-reply"></i> Ответ компании:</strong>
+                                <p>Сергей, спасибо за предложение! Мы уже рассматриваем этот вопрос. Планируем начать установку в новых автобусах с сентября 2025 года.</p>
+                                <small>— Директор по развитию, 13.07.2025</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-item">
+                        <div class="feedback-header">
+                            <div class="feedback-author">
+                                <i class="fas fa-user-circle"></i>
+                                <div>
+                                    <strong>Анна Иванова</strong>
+                                    <small>a.ivanova@mail.ru • 10.07.2025</small>
+                                </div>
+                            </div>
+                            <span class="feedback-type thanks">Благодарность</span>
+                        </div>
+                        <div class="feedback-content">
+                            <h3>Благодарность водителю рейса 102</h3>
+                            <p>Хочу выразить благодарность водителю рейса 102 Москва-Санкт-Петербург от 09.07.2025. Очень вежливый и внимательный водитель, аккуратно водил автобус, вовремя делал остановки. Поездка была комфортной и безопасной.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-item">
+                        <div class="feedback-header">
+                            <div class="feedback-author">
+                                <i class="fas fa-user-circle"></i>
+                                <div>
+                                    <strong>Дмитрий Соколов</strong>
+                                    <small>d.sokolov@gmail.com • 08.07.2025</small>
+                                </div>
+                            </div>
+                            <span class="feedback-type question">Вопрос</span>
+                        </div>
+                        <div class="feedback-content">
+                            <h3>Вопрос по багажу</h3>
+                            <p>Подскажите, какие есть ограничения по размеру и весу багажа в автобусах? Планирую поездку с большим чемоданом.</p>
+                        </div>
+                        <div class="feedback-footer">
+                            <div class="feedback-response">
+                                <strong><i class="fas fa-reply"></i> Ответ компании:</strong>
+                                <p>Дмитрий, максимальный вес багажа - 20 кг, размеры не должны превышать 100 см в сумме трёх измерений. За дополнительный багаж взимается плата 500 руб.</p>
+                                <small>— Служба поддержки, 09.07.2025</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="feedback-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-comments"></i> Обратная связь</h3>
+                    <p>Ваше мнение важно для нас. Мы читаем все обращения и работаем над улучшением сервиса.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-share-alt"></i> Другие способы связи</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link vk"><i class="fab fa-vk"></i> ВКонтакте</a>
+                        <a href="#" class="social-link tg"><i class="fab fa-telegram"></i> Telegram</a>
+                        <a href="#" class="social-link whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="mailto:feedback@avtotrans.ru" class="social-link email">
+                            <i class="fas fa-envelope"></i> feedback@avtotrans.ru
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-phone"></i> Телефон поддержки</h3>
+                    <p class="phone-number">8 (800) 123-45-67</p>
+                    <p>Ежедневно с 8:00 до 22:00</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 АвтоТранс. Система обратной связи.</p>
+                <p><a href="system.html" class="footer-link">Перейти к системе учёта</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Счетчик символов
+            const messageText = document.getElementById('message-text');
+            const charCount = document.getElementById('char-count');
+            
+            if (messageText && charCount) {
+                messageText.addEventListener('input', function() {
+                    charCount.textContent = this.value.length;
+                    
+                    if (this.value.length > 2000) {
+                        this.value = this.value.substring(0, 2000);
+                        charCount.textContent = 2000;
+                    }
+                });
+            }
+            
+            // Имитация регистрации
+            const registerBtn = document.getElementById('register-btn');
+            const submitBtn = document.getElementById('submit-feedback');
+            
+            if (registerBtn) {
+                registerBtn.addEventListener('click', function() {
+                    const name = document.getElementById('reg-name').value;
+                    const email = document.getElementById('reg-email').value;
+                    const phone = document.getElementById('reg-phone').value;
+                    const password = document.getElementById('reg-password').value;
+                    const agreeTerms = document.getElementById('agree-terms').checked;
+                    
+                    if (name && email && phone && password && agreeTerms) {
+                        // В демо-версии сразу разрешаем отправку
+                        alert('В демо-версии: регистрация прошла успешно! Вы можете отправить сообщение.');
+                    } else {
+                        alert('В демо-версии: пожалуйста, заполните все поля формы регистрации.');
+                    }
+                });
+            }
+            
+            // Обработка формы обратной связи
+            const form = document.getElementById('feedbackForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const messageType = document.getElementById('message-type').value;
+                    const messageTitle = document.getElementById('message-title').value;
+                    const messageText = document.getElementById('message-text').value;
+                    const name = document.getElementById('reg-name').value;
+                    
+                    if (messageType && messageTitle && messageText) {
+                        alert('В демо-версии: ваше сообщение отправлено успешно!');
+                        this.reset();
+                        document.getElementById('char-count').textContent = '0';
+                        document.getElementById('agree-terms').checked = true;
+                        document.getElementById('message-type').value = 'suggestion';
+                    } else {
+                        alert('Пожалуйста, заполните все обязательные поля сообщения.');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
